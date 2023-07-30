@@ -1,0 +1,11 @@
+# venv
+venv
+.venv
+
+# cache
+*_cache
+__pycache__
+*.pyc
+
+# editor settings
+.vscode
