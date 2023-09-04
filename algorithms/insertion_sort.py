@@ -13,3 +13,7 @@ def insertion_sort(vector: list[int | float]) -> Sequence[int | float]:
         vector_[i + 1] = key
 
     return vector_
+
+
+def merge_sort(vector: list[int | float]) -> None:
+    ...
