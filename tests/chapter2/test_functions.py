@@ -1,13 +1,13 @@
 import pytest
-from algorithms.chapter2.functions import find_value, binary_sum
+from algorithms.chapter2.functions import linear_search, binary_sum
 
 
-def test_find_value() -> None:
+def test_linear_search() -> None:
     vector = [1, 10, 32, 35, 54, 32, 10, 100]
 
-    assert find_value(vector, 10) == 1
-    assert find_value(vector, 54) == 4
-    assert find_value(vector, 1000) is None
+    assert linear_search(vector, 10) == 1
+    assert linear_search(vector, 54) == 4
+    assert linear_search(vector, 1000) is None
 
 
 @pytest.mark.parametrize(

@@ -1,4 +1,4 @@
-def find_value(vector: list[int], value: int) -> int | None:
+def linear_search(vector: list[int], value: int) -> int | None:
     for index, v in enumerate(vector):
         if v == value:
             return index
