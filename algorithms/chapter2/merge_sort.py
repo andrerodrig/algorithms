@@ -9,7 +9,7 @@ def merge_sort(vector: list[int]) -> list[int] | None:
 
 
 def run_merge_sort(vector: list[int], p: int, r: int) -> list[int] | None:
-    if p >= r:
+    if p == r:
         return None
 
     q = math.floor((p + r) / 2)  # Midpoint of vector[p:r]
