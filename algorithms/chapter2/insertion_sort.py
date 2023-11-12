@@ -25,3 +25,23 @@ def rev_insertion_sort(vector: list[int | float]) -> Sequence[int | float]:
             i += 1
         vector_[i - 1] = key
     return vector_
+
+
+def recursive_insertion_sort(
+    vector: list[int | float], size: int
+) -> Sequence[int | float] | None:
+    if size == 1:
+        return None
+
+    key = vector[size - 1]
+    recursive_insertion_sort(vector, size - 1)
+    if key > vector[size - 2]:
+        return vector
+
+    i = size - 2
+    while i > -1 and vector[i] >= key:
+        vector[i + 1] = vector[i]
+        i -= 1
+
+    vector[i + 1] = key
+    return vector
