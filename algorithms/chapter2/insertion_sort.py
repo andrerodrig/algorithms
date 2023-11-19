@@ -2,6 +2,11 @@ from typing import Sequence
 
 
 def insertion_sort(vector: list[int | float]) -> Sequence[int | float]:
+    """The insertion sort algorihm. It gives a O(n^2) running time.
+
+    :param vector: The unsorted vector.
+    :returns: The given vector ascendingly sorted.
+    """
     vector_ = vector.copy()
 
     for j in range(1, len(vector_)):
