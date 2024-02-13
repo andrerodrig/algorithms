@@ -25,17 +25,13 @@ def test_matrix_multiply() -> None:
     "a, b",
     (
         [[[1, 3], [2, 4]], [[5, 2], [2, 1]]],
-        # [
-        #     [[1, 3, 4], [2, 4, 10], [1, 2, 1]],
-        #     [[5, 2, 2], [2, 2, 1], [3, 5, 11]]
-        # ],
         [
             [[1, 3, 1, 2], [2, 4, 1, 1], [2, 4, 5, 3], [2, 4, 9, 3]],
             [[3, 3, 1, 5], [10, 2, 21, 11], [2, 5, 3, 0], [2, 1, 6, 9]],
         ],
     ),
 )
-def test_matrix_multiply_recursive(a: list, b: list) -> None:
+def test_square_matrix_multiply_recursive(a: list, b: list) -> None:
     c = square_matrix_multiply_recursive(a, b)
 
     assert np.all(c == np.matmul(a, b))
