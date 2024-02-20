@@ -92,6 +92,7 @@ def plot_comparison(number_of_arrays: int) -> go.Figure:
         time_mapping,
         x="domain",
         y=[RECURSIVE, ITERATIVE],
+        labels={"domain": "input size (n)", "value": "time (s)"},
     )
     return figure
 
