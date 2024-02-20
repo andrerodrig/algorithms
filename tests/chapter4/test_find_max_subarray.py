@@ -1,7 +1,7 @@
 import pytest
 from algorithms.chapter4.find_max_subarray import (
     find_max_crossing_subarray,
-    find_max_subarray,
+    find_max_subarray_recursive,
     find_max_subarray_iterative,
 )
 
@@ -38,8 +38,10 @@ def test_find_max_crossing_subarray(
         ([-11, -2, -33, -12, -33, -4], (1, 1, -2)),
     ),
 )
-def test_find_max_subarray(array: list, expected_result: tuple[int, int, int]) -> None:
-    left_index, right_index, max_value = find_max_subarray(array, 0, len(array) - 1)
+def test_find_max_subarray_recursive(
+    array: list, expected_result: tuple[int, int, int]
+) -> None:
+    left_index, right_index, max_value = find_max_subarray_recursive(array)
 
     assert (left_index, right_index, max_value) == expected_result
 

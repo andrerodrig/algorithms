@@ -33,7 +33,17 @@ def find_max_crossing_subarray(
     return (max_left, max_right, left_sum + right_sum)
 
 
-def find_max_subarray(A: list, low: int, high: int) -> tuple[int, int, int | float]:
+def find_max_subarray_recursive(A: list) -> tuple[int, int, int | float]:
+    """Find the maximum subarray.
+
+    See :py:func: `_find_max_subarray_recursive`
+    """
+    return _find_max_subarray_recursive(A, 0, len(A) - 1)
+
+
+def _find_max_subarray_recursive(
+    A: list[int], low: int, high: int
+) -> tuple[int, int, int | float]:
     """Recursive form of find maximum subarray algorithm.
 
     Applies itself to the left side, right side, and the subarray that crosses the
@@ -47,8 +57,10 @@ def find_max_subarray(A: list, low: int, high: int) -> tuple[int, int, int | flo
         return (low, high, A[low])
     else:
         mid = floor((low + high) / 2)
-        left_low, left_high, left_max = find_max_subarray(A, low, mid)
-        right_low, right_high, right_max = find_max_subarray(A, mid + 1, high)
+        left_low, left_high, left_max = _find_max_subarray_recursive(A, low, mid)
+        right_low, right_high, right_max = _find_max_subarray_recursive(
+            A, mid + 1, high
+        )
         cross_low, cross_high, cross_max = find_max_crossing_subarray(A, low, mid, high)
 
         if left_max >= right_max and left_max >= cross_max:
@@ -59,7 +71,7 @@ def find_max_subarray(A: list, low: int, high: int) -> tuple[int, int, int | flo
             return (cross_low, cross_high, cross_max)
 
 
-def find_max_subarray_iterative(A: list) -> tuple[int, int, int | float]:
+def find_max_subarray_iterative(A: list[int]) -> tuple[int, int, int | float]:
     """Iterative form of find maximum subarray.
 
     Finds the max subarray by brute force, comparing each subarray iteratively.
