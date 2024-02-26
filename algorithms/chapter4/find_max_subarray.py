@@ -63,12 +63,25 @@ def _find_max_subarray_recursive(
         )
         cross_low, cross_high, cross_max = find_max_crossing_subarray(A, low, mid, high)
 
-        if left_max >= right_max and left_max >= cross_max:
-            return (left_low, left_high, left_max)
-        elif right_max >= left_max and right_max >= cross_max:
-            return (right_low, right_high, right_max)
-        else:
-            return (cross_low, cross_high, cross_max)
+        max_subarrays = {
+            "left": (left_low, left_high, left_max),
+            "right": (right_low, right_high, right_max),
+            "cross": (cross_low, cross_high, cross_max),
+        }
+        return _choose_greater_subarray(max_subarrays)
+
+
+def _choose_greater_subarray(max_subarrays: dict) -> tuple[int, int, int | float]:
+    left_low, left_high, left_max = max_subarrays["left"]
+    right_low, right_high, right_max = max_subarrays["right"]
+    cross_low, cross_high, cross_max = max_subarrays["cross"]
+
+    if left_max >= right_max and left_max >= cross_max:
+        return (left_low, left_high, left_max)
+    elif right_max >= left_max and right_max >= cross_max:
+        return (right_low, right_high, right_max)
+    else:
+        return (cross_low, cross_high, cross_max)
 
 
 def find_max_subarray_iterative(A: list[int]) -> tuple[int, int, int | float]:
@@ -101,3 +114,30 @@ def find_max_subarray_iterative(A: list[int]) -> tuple[int, int, int | float]:
                 max_index_right = j
 
     return (max_index_left, max_index_right, max_value)
+
+
+def find_max_subarray_hybrid(A: list) -> tuple[int, int, int | float]:
+    """Find the maximum subarray.
+
+    See :py:func: `find_max_subarray_hybrid`
+    """
+    return _find_max_subarray_iter_and_rec(A, 0, len(A) - 1)
+
+
+def _find_max_subarray_iter_and_rec(
+    A: list[int], low: int, high: int
+) -> tuple[int, int, int | float]:
+    if len(A) <= 50:
+        return find_max_subarray_iterative(A)
+
+    mid = floor((low + high) / 2)
+    left_low, left_high, left_max = _find_max_subarray_recursive(A, low, mid)
+    right_low, right_high, right_max = _find_max_subarray_recursive(A, mid + 1, high)
+    cross_low, cross_high, cross_max = find_max_crossing_subarray(A, low, mid, high)
+
+    max_subarrays = {
+        "left": (left_low, left_high, left_max),
+        "right": (right_low, right_high, right_max),
+        "cross": (cross_low, cross_high, cross_max),
+    }
+    return _choose_greater_subarray(max_subarrays)
