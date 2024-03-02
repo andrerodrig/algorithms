@@ -121,6 +121,10 @@ def find_max_subarray_hybrid(A: list) -> tuple[int, int, int | float]:
 
     See :py:func: `find_max_subarray_hybrid`
     """
+    all_zeros = all([el == 0 for el in A])
+    if len(A) == 0 or all_zeros:
+        return (-1, -1, 0)
+
     return _find_max_subarray_iter_and_rec(A, 0, len(A) - 1)
 
 
