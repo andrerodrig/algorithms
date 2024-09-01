@@ -145,3 +145,25 @@ def _find_max_subarray_iter_and_rec(
         "cross": (cross_low, cross_high, cross_max),
     }
     return _choose_greater_subarray(max_subarrays)
+
+
+def linear_find_max_subarray(A: list) -> tuple[int, int, int | float]:
+    max_sum_found = A[0]
+    max_index_left = max_index_right = 0
+
+    if len(A) == 1:
+        return max_index_left, max_index_right, max_sum_found
+    
+    current_sum_0 = 0
+    current_sum_j = 0
+    for i in range(len(A)):        
+        current_sum_0 += A[i]
+        if current_sum_0 > max_sum_found:
+            max_sum_found = current_sum_0
+            max_index_right = i
+        else:
+            for j in range(i + 2):
+                # TODO: terminar
+                ...
+
+    return max_index_left, max_index_right, max_sum_found
