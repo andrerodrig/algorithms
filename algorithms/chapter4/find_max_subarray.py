@@ -58,9 +58,7 @@ def _find_max_subarray_recursive(
     else:
         mid = floor((low + high) / 2)
         left_low, left_high, left_max = _find_max_subarray_recursive(A, low, mid)
-        right_low, right_high, right_max = _find_max_subarray_recursive(
-            A, mid + 1, high
-        )
+        right_low, right_high, right_max = _find_max_subarray_recursive(A, mid + 1, high)
         cross_low, cross_high, cross_max = find_max_crossing_subarray(A, low, mid, high)
 
         max_subarrays = {
@@ -153,10 +151,9 @@ def linear_find_max_subarray(A: list) -> tuple[int, int, int | float]:
 
     if len(A) == 1:
         return max_index_left, max_index_right, max_sum_found
-    
+
     current_sum_0 = 0
-    current_sum_j = 0
-    for i in range(len(A)):        
+    for i in range(len(A)):
         current_sum_0 += A[i]
         if current_sum_0 > max_sum_found:
             max_sum_found = current_sum_0
