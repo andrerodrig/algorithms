@@ -3,9 +3,14 @@ venv
 .venv
 
 # cache
-*_cache
+*cache
 __pycache__
 *.pyc
 
 # editor settings
 .vscode
+
+# build files
+dist*
+build*
+*egg-info
